@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-deployment
+  labels:
+    project: db-project
+    tier: tier-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      project: db-project
+  template:
+    metadata:
+      name: db-pods
+      labels:
+        project: db-project
+    spec:
+      containers:
+        - name: db-container
+          image: nginx
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 2
+

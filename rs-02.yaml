@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worldcup-deployment
+  labels:
+    project: worldcup
+    env: development
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      project: worldcup
+  template:
+    metadata:
+      name: worldcup-pods
+      labels:
+        project: worldcup
+    spec:
+      containers:
+        - name: worldcup-cont
+          image: tomcat

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tommy-deployment
+  labels:
+    project: tommy-project
+    tier: tier-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      project: tommy-project
+  template:
+    metadata:
+      name: tommy-pods
+      labels:
+        project: tommy-project
+    spec:
+      containers:
+        - name: tommy-container
+          image: httpd
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 2
+

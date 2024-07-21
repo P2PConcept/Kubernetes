@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomtom-rs
+  labels:
+    tier: tier1
+    env: development
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      env: development
+  template:
+      metadata:
+        name: tomtom-pod
+        labels:
+          env: development
+      spec:
+        containers:
+          - name: tomtom-cont
+            image: tomcat
+

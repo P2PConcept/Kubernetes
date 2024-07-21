@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: wcup-rs
+  labels:
+    project: worldcup
+    env: production
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      project: worldcup
+  template:
+    metadata:
+      name: wcup-pods
+      labels:
+        project: worldcup
+    spec:
+      containers:
+        - name: wc-container
+          image: tomcat
+

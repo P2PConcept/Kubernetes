@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+ name: httpd-rc
+ labels:
+   env: development
+   app: appservers
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: appservers
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+        app: appservers
+    spec:
+      containers:
+        - name: webserver
+          image: nginx
+            # ports:
+            #- containerPort: 80
+            #  hostPort: 8000
+  
